@@ -5,6 +5,8 @@ using UnityEngine;
 public class VidaEnemigoComun : MonoBehaviour
 {
     public int vida = 100;
+    public GameObject objetoSuelto;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -16,14 +18,16 @@ public class VidaEnemigoComun : MonoBehaviour
     {
 
     }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Bala"))
         {
             vida -= 20;
             Destroy(collision.gameObject);
-            if (vida < 0)
+            if (vida <= 0) // Corrección aquí: cambia "vida < 0" a "vida <= 0"
             {
+                Instantiate(objetoSuelto, transform.position, Quaternion.identity);
                 Destroy(gameObject);
             }
         }

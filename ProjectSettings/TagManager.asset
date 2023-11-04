@@ -8,6 +8,8 @@ TagManager:
   - tanke
   - rapido
   - comun
+  - Dinero
+  - Enemigo
   layers:
   - Default
   - TransparentFX

@@ -5,6 +5,7 @@ using UnityEngine;
 public class VidaEnemigoTanke : MonoBehaviour
 {
     public int vida = 100;
+    public GameObject objetoSuelto;
     // Start is called before the first frame update
     void Start()
     {
@@ -24,6 +25,7 @@ public class VidaEnemigoTanke : MonoBehaviour
             Destroy(collision.gameObject);
             if (vida < 0)
             {
+                Instantiate(objetoSuelto, transform.position, Quaternion.identity);
                 Destroy(gameObject);
             }
         }
