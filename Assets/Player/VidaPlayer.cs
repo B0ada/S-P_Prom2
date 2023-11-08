@@ -4,43 +4,53 @@ using UnityEngine;
 
 public class VidaPlayer : MonoBehaviour
 {
-    public int Vidaplayer = 100;
-    // Start is called before the first frame update
+    public int vidaMaxima = 100;
+    public int vidaActual;
+
+    public BarraVida barraVida; 
+
     void Start()
     {
-        
+        vidaActual = vidaMaxima;
+        barraVida.SetVidaMaxima(vidaMaxima);
     }
 
-    // Update is called once per frame
+
     void Update()
     {
         
     }
-    private void OnTriggerEnter2D(Collider2D collision)
+    void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("tanke"))
         {
-            Vidaplayer -= 30;
-            if (Vidaplayer < 0)
+            TakeDamage(30);
+            if (vidaActual <= 0)
             {
                 Destroy(gameObject);
             }
         }
         else if (collision.CompareTag("comun"))
         {
-            Vidaplayer -= 20;
-            if (Vidaplayer < 0)
+            TakeDamage(20);
+            if (vidaActual <= 0)
             {
                 Destroy(gameObject);
             }
         }
         else if (collision.CompareTag("rapido"))
         {
-            Vidaplayer -= 30;
-            if (Vidaplayer < 0)
+            TakeDamage(30);
+            if (vidaActual <= 0)
             {
                 Destroy(gameObject);
             }
+        }
+        void TakeDamage(int damage)
+        {
+            vidaActual -= damage;
+
+            barraVida.SetVida(vidaActual);
         }
     }
 }
